@@ -108,5 +108,5 @@ yarn start-api
 
 Start React (front-end):
 ```
-yearn start
+yarn start
 ```
