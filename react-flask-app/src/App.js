@@ -41,19 +41,15 @@ export default class App extends React.Component {
           </a>
           <p>The current time is {vm.state.time}</p>
           <p>
-  
-          <TwitterTweetEmbed
-          tweetId={'1203753948173094913'}
-  />
+          <TwitterTweetEmbed tweetId={'1203753948173094913'}/>
           </p>
-        </header>
-  
-        
-        
+        </header>  
       </div>
     );
   }
 }
+
+
 // function App() {
 
 //   const [currentTime,setCurrentTime] = useState(1)

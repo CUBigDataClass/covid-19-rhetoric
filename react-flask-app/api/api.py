@@ -2,9 +2,6 @@ from flask import Flask
 from flask import jsonify 
 from pymongo import MongoClient
 
-
-from .extensions import mongo
-
 import time
 app = Flask(__name__)
 mongoDBclient = MongoClient('localhost', 27017)
