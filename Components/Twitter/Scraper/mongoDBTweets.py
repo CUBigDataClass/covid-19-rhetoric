@@ -2,6 +2,7 @@ import twitterScraper as ts
 import us_states_info as stateInfo
 from pymongo import MongoClient
 import datetime as dt
+import os
 
 '''
 This script expects that mongoDB is installed and running...
@@ -20,31 +21,43 @@ $sudo systemctl stop mongod
 
 Default port: 27017
 '''
+
+track_list = ["funny", "meme", "hilarious", "haha"]
+
 def main():
+    #Start mongoDB service on host
+    os.system("sudo systemctl start mongod")
+
     #Making a connection with MogoClient
     mongoDBclient = MongoClient('localhost', 27017)
 
     #Getting the DB (creates the DB if DNE)
-    mongoDB = mongoDBclient['memeTweets']
+    mongoDB = mongoDBclient['State_Tweets']
 
-    #Getting the collection (creates collection if DNE)
-    coTwt = mongoDB['CO']
+    #Gets state query info (cities and radii per state)
+    stateDict = stateInfo.US_States_Info().get_US_cities_with_radius()
 
-    week_ago = dt.date.today() - dt.timedelta(days=7)
+    for key in stateDict.keys():
+        print("Scraping for:",key,"...")
 
-    tweets = ts.scrape_twitter(query="meme", limit=10000, begindate=dt.date(2015, 6, 12), enddate=week_ago, lang='en', loc_near="Denver,CO", loc_within_mi=300)
-    ts.sort_tweets_by_popularity(tweets)
+        #Getting the collection (creates collection if DNE)
+        mongoCollection = mongoDB[key]
 
-    #Insert into DB
-    for tweet in tweets:
-        tweetEntry = {
-            "tweetID": tweet.tweet_id,
-            "date": tweet.timestamp,
-            "text": tweet.text,
-            "likes": tweet.likes,
-            "rt": tweet.retweets
-        }
-        coTwt.insert_one(tweetEntry)
+        tweets = ts.scrape_twitter(track_list=track_list, limit=10, begindate=dt.date(2015, 6, 12), enddate=dt.date.today(),
+                                   loc_near=stateDict.get(key).get('city'), radius=stateDict.get(key).get('radius'))
+
+        ts.sort_tweets_by_popularity(tweets)
+
+        #Insert into DB
+        for tweet in tweets:
+            tweetEntry = {
+                "tweetID": tweet.tweet_id,
+                "date": tweet.timestamp,
+                "text": tweet.text,
+                "likes": tweet.likes,
+                "rt": tweet.retweets
+            }
+            mongoCollection.insert_one(tweetEntry)
 
 if __name__ == '__main__':
     main()

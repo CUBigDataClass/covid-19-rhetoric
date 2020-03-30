@@ -1,2 +1,4 @@
 Components/Twitter/Scraper/__pycache__/
 .vscode/settings.json
+Components/Twitter/Twitter-api/__pycache__/pythonTwitterAPI.cpython-36.pyc
+Components/Twitter/Twitter-api/twitterKeys.json
