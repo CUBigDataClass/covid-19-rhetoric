@@ -1,4 +1,5 @@
 import twitterScraper as ts
+import us_states_info as stateInfo
 from pymongo import MongoClient
 import datetime as dt
 
@@ -31,7 +32,7 @@ def main():
 
     week_ago = dt.date.today() - dt.timedelta(days=7)
 
-    tweets = ts.query_for_tweets(query="meme", limit=10000, begindate=dt.date(2015, 6, 12), enddate=week_ago, lang='en', loc_near="Denver,CO", loc_within_mi=300)
+    tweets = ts.scrape_twitter(query="meme", limit=10000, begindate=dt.date(2015, 6, 12), enddate=week_ago, lang='en', loc_near="Denver,CO", loc_within_mi=300)
     ts.sort_tweets_by_popularity(tweets)
 
     #Insert into DB

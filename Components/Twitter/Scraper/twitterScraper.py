@@ -69,4 +69,16 @@ def make_string_query(track_list, loc_near, loc_within_mi):
     return track_str + " near:" + "\"" + loc_near + "\"" + " within:" + str(loc_within_mi) + "mi"
 
 def sort_tweets_by_popularity(tweets):
+    """
+        Sorts lists of tweets in-place where (likes + retweets) consist of key
+            
+            Parameters
+            ----------
+            tweets : list of tweets
+            
+            Returns
+            -------
+            none :
+                Sorts tweets in place
+        """
     tweets.sort(key=lambda x: (x.likes+x.retweets), reverse=True)
