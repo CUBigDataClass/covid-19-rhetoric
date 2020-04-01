@@ -1,12 +1,15 @@
 from twitterscraper import query_tweets
 
-def scrape_twitter(track_list,limit,begindate,enddate,loc_near,radius):
+def scrape_twitter(track_list,limit,poolsize,begindate,enddate,loc_near,radius):
     """ 
         Parameters
         ----------
         track_list : list of strings
 
         limit : integer
+
+        poolsize : integer
+            Number of parallel processes TwitterScraper should initiate while scraping for your query
 
         begindate : date object
 
@@ -27,7 +30,7 @@ def scrape_twitter(track_list,limit,begindate,enddate,loc_near,radius):
     tweets = []
     string_query = make_string_query(track_list=track_list, loc_near=loc_near, loc_within_mi=radius)
 
-    for tweet in query_tweets(query=string_query, limit=limit, begindate=begindate, enddate=enddate, lang="en"):
+    for tweet in query_tweets(query=string_query, limit=limit, poolsize=poolsize, begindate=begindate, enddate=enddate, lang="en"):
         tweets.append(tweet)
     print("Number of Tweets fround for " + loc_near + ": ", len(tweets))
     return tweets

@@ -3,9 +3,12 @@ import us_states_info as stateInfo
 from pymongo import MongoClient
 import datetime as dt
 import os
+import time
 
 '''
 This script expects that mongoDB is installed and running...
+
+Gets tweets for each US state.
 
 Start MongoDB:
 $sudo systemctl start mongod
@@ -21,8 +24,8 @@ $sudo systemctl stop mongod
 
 Default port: 27017
 '''
-
-track_list = ["funny", "meme", "hilarious", "haha"]
+start_time = time.time()
+track_list = ["funny", "meme", "hilarious", "haha", "LOL"]
 
 def main():
     #Start mongoDB service on host
@@ -43,7 +46,7 @@ def main():
         #Getting the collection (creates collection if DNE)
         mongoCollection = mongoDB[key]
 
-        tweets = ts.scrape_twitter(track_list=track_list, limit=10, begindate=dt.date(2015, 6, 12), enddate=dt.date.today(),
+        tweets = ts.scrape_twitter(track_list=track_list, limit=10, poolsize=5, begindate=dt.date(2015, 6, 12), enddate=dt.date.today(),
                                    loc_near=stateDict.get(key).get('city'), radius=stateDict.get(key).get('radius'))
 
         ts.sort_tweets_by_popularity(tweets)
@@ -58,6 +61,8 @@ def main():
                 "rt": tweet.retweets
             }
             mongoCollection.insert_one(tweetEntry)
+        
+        print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == '__main__':
     main()
