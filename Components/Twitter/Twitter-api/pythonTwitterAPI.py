@@ -125,13 +125,8 @@ class TwitterClient():
   # - search query string of 500 characters maximum
   #########################################################
   def search_for_tweet(self, query_str, count):
-    #Check character count...
-    char_count = 0
-    for word in query_str:
-      for char in word:
-        char_count +=1
-    
-    if(char_count >= 500):
+    #Check character count... 
+    if(len(query_str) >= 500):
       print("Exceeded Max character count in query!")
       return False
     else:

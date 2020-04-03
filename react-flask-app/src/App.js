@@ -1,18 +1,18 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TopNavBar from "./TopNavBar";
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
-
 
 
 export default class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state = {time : '0'}
+    this.state = { time: '0' }
   }
 
-  componentDidMount(){
+  /* componentDidMount(){
     var vm = this;
     setInterval(()=>{
       fetch('/time').then(res => res.json()).then(data => {
@@ -21,29 +21,12 @@ export default class App extends React.Component {
         });
       })
     })
-  }
-  render(){
-    var vm = this;
+  } */
+
+  render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <p>The current time is {vm.state.time}</p>
-          <p>
-          <TwitterTweetEmbed tweetId={'1203753948173094913'}/>
-          </p>
-        </header>  
+        <TopNavBar />
       </div>
     );
   }
@@ -82,8 +65,8 @@ export default class App extends React.Component {
 //         </p>
 //       </header>
 
-      
-      
+
+
 //     </div>
 //   );
 // }

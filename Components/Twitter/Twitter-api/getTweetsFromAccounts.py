@@ -43,16 +43,17 @@ def main():
   mongoDBclient = MongoClient('localhost', 27017)
 
   #Getting the DB (creates the DB if DNE)
-  mongoDB = mongoDBclient['memeTweets']
+  mongoDB = mongoDBclient['FunnyAccounts']
 
   #Getting the collection (creates collection if DNE)
-  tweetsFromUsersCollection = mongoDB['tweetsFromUsers']
+  tweetsFromUsersCollection = mongoDB['FunnyAccountTweets']
 
   twitter_client = pt.TwitterClient()
   tweet_analyzer = pt.TweetAnalyzer()
 
   api = twitter_client.get_twitter_client_api()
 
+  #List of Twitter Accounts to pull timeline from
   twitterTargetAccounts = ["someecards", "SpeakComedy", "TheComedyHumor", "FactsOfSchool", "wordstionary"]
 
   #https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
@@ -61,12 +62,12 @@ def main():
       
       for tweet in timeline:
 
+        #Send text section for sentiment tweet.full_text
         tweetEntry = {
-          "tweetID": tweet.id,
-          "date": tweet.created_at,
-          "text": tweet.full_text,
+          "tweetID": tweet.id,  
           "likes": tweet.favorite_count,
-          "retweets": tweet.retweet_count
+          "retweets": tweet.retweet_count,
+          "sentiment_score" : 0
         }
 
         tweetsFromUsersCollection.insert_one(tweetEntry) 

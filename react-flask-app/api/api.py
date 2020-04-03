@@ -1,19 +1,10 @@
 from flask import Flask
 from flask import jsonify 
 from flask import request
-from pymongo import MongoClient
-import sys
-
-# Custom class with US state information
-sys.path.append('../../Components/Twitter/Scraper/')
-import us_states_info as stateInfo
+import Services as serv
 
 import time
 app = Flask(__name__)
-mongoDBclient = MongoClient('localhost', 27017)
-
-mongoDB = mongoDBclient['memeTweets']
-coTwt = mongoDB['CO']
 
 #########################################################
 # Testing routes
@@ -33,52 +24,39 @@ def get_current_time():
 #########################################################
 
 @app.route('/GetTopPost/Month', methods=['GET'])
-def get_top_post_month():
-    return jsonify({
-        "function:" : "get_top_post_month",
-    }), 200 #OK
+def get_Top_Post_Month():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_post_month_service()
 
 @app.route('/GetTopPost/Week', methods=['GET'])
-def get_top_post_week():
-    return jsonify({
-        "function:" : "get_top_post_week",
-    }), 200 #OK
+def get_Top_Post_Week():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_post_week_service()
 
 @app.route('/GetTopPost/Day', methods=['GET'])
-def get_top_post_day():
-    return jsonify({
-        "function:" : "get_top_post_day",
-    }), 200 #OK
+def get_Top_Post_Day():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_post_day_service()
 
 @app.route('/GetTopPost/Hour', methods=['GET'])
-def get_top_post_hour():
-    return jsonify({
-        "function:" : "get_top_post_hour",
-    }), 200 #OK
-    
+def get_Top_Post_hour():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_post_hour_service()
+
 #########################################################
 # US Map Page
 #########################################################
 
 @app.route('/GetTopPostsState/<string:state>', methods=['GET'])
-def get_top_posts_state(state):
-    stateAbbr = stateInfo.US_States_Info().get_state_abbreviations()
-    if (state in stateAbbr):
-        return jsonify({
-            "function:" : "get_top_posts_state",
-            "input:" : state
-        }), 200 #OK
-    else:
-        return "NOT A VALID STATE\n", 404 #NOT FOUND
+def get_Top_Posts_State(state):
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_posts_state_service(state)
 
 #########################################################
 # Search Page
 #########################################################
 
 @app.route('/Search/<string:user_input>', methods=['GET'])
-def user_search_query(user_input):
-    return jsonify({
-        "function:" : "user_search_query",
-        "input" : user_input
-    }), 200 #OK
-   
+def user_search_query_service(user_input):
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.user_search_query_service(user_input)
