@@ -54,7 +54,8 @@ def main():
   api = twitter_client.get_twitter_client_api()
 
   #List of Twitter Accounts to pull timeline from
-  twitterTargetAccounts = ["someecards", "SpeakComedy", "TheComedyHumor", "FactsOfSchool", "wordstionary"]
+  twitterTargetAccounts = ["someecards", "SpeakComedy", "TheComedyHumor", "FactsOfSchool", "wordstionary", "nbcsnl", "TheWorldOfFunny",
+                           "holdmyale", "SignsFun"]
 
   #https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
   for accout in twitterTargetAccounts:

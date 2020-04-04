@@ -10,13 +10,9 @@ app = Flask(__name__)
 # Testing routes
 #########################################################
 
-myquery = { "tweetID": "1203753948173094913"}
 @app.route('/time')
 def get_current_time():
     data = {'time':time.time()}
-    mydoc = coTwt.find(myquery)
-    for x in mydoc:
-        print(x)
     return jsonify(data)
 
 #########################################################

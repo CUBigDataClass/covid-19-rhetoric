@@ -5,3 +5,5 @@ Components/Twitter/Twitter-api/twitterKeys.json
 Components/sentiment_analyzer/__pycache__/test_sentiment_TextBlob.cpython-36-pytest-5.4.1.pyc
 Components/sentiment_analyzer/__pycache__/sentiment_TextBlob.cpython-36.pyc
 Components/Twitter/Twitter-api/__pycache__/pythonTwitterAPI.cpython-38.pyc
+Components/sentiment_analyzer/__pycache__/sentiment_TextBlob.cpython-38.pyc
+Components/sentiment_analyzer/__pycache__/test_sentiment_TextBlob.cpython-38-pytest-5.4.1.pyc

@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TopNavBar from "./TopNavBar";
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import './CSS/App.css';
 
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { time: '0' }
+    this.state = { tweetIds: [] }
   }
 
-  /* componentDidMount(){
+  componentDidMount() {
     var vm = this;
-    setInterval(()=>{
-      fetch('/time').then(res => res.json()).then(data => {
-        vm.setState({
-          time: data.time
-        });
-      })
+    fetch('/GetTopPostsState/CO').then(res => res.json()).then(data => {
+      console.log(data)
     })
-  } */
+  }
 
   render() {
     return (
       <div className="App">
-        <TopNavBar />
+        <h1>"Hello World!</h1>
       </div>
     );
   }

@@ -31,6 +31,14 @@
   justify-content: center;
 }
 
+.dictionary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 4rem auto;
+  
+}
+
 
 .App-link {
   color: #61dafb;
