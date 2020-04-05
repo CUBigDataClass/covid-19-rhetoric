@@ -2,6 +2,7 @@ import pythonTwitterAPI as pt
 import json
 import os
 from pymongo import MongoClient
+import time
 
 '''
 https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline
@@ -26,12 +27,22 @@ tweet = {
         }
 '''
 
+def create_tweet_entry(tweet):
+  tweetEntry = {
+        "tweetID": tweet.id,  
+        "text" : tweet.full_text,
+        "likes": tweet.favorite_count,
+        "retweets": tweet.retweet_count,
+        "sentiment_score" : 0
+      }
+  return tweetEntry
+
 #########################################################
   # Function main
 #########################################################
 
 def main():
-  os.system("sudo systemctl start mongod")
+  start_time = time.time()
 
   print("****************************************************************")
   print("                           Warning:                             ")
@@ -58,22 +69,13 @@ def main():
                            "holdmyale", "SignsFun"]
 
   #https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
-  for accout in twitterTargetAccounts:
-      timeline = twitter_client.get_user_timeline_tweets(accout, 100)
-      
-      for tweet in timeline:
 
-        #Send text section for sentiment tweet.full_text
-        tweetEntry = {
-          "tweetID": tweet.id,  
-          "likes": tweet.favorite_count,
-          "retweets": tweet.retweet_count,
-          "sentiment_score" : 0
-        }
-
-        tweetsFromUsersCollection.insert_one(tweetEntry) 
+  for account in twitterTargetAccounts:
+    timeline = twitter_client.get_user_timeline_tweets(account, 100)      
+    tweetsFromUsersCollection.insert_many(map(create_tweet_entry,timeline)) 
 
   print("Done!")
+  print("--- %s seconds ---" % (time.time() - start_time))
 
 if  __name__ == "__main__":
   main()

@@ -24,7 +24,7 @@ class US_States_Info():
             },
             "AK" :{
                 "city": "Anchorage,AK",
-                "radius": 125
+                "radius": 450
             },
             "AR" :{
                 "city": "Little Rock,AR",
@@ -43,8 +43,8 @@ class US_States_Info():
                 "radius": 175
             },
             "CT" :{
-                "city": "Wethersfield,CT",
-                "radius": 50
+                "city": "Hartford,CT",
+                "radius": 40
             }, 
             "DE" :{
                 "city": "Dover,DE",
@@ -55,16 +55,16 @@ class US_States_Info():
                 "radius": 225
             },
             "GA" :{
-                "city": "Macon,GA",
-                "radius": 150
+                "city": "Atlanta,GA",
+                "radius": 110
             },
             "HI" :{
                 "city": "Lahaina,HI",
                 "radius": 300
             },
             "ID" :{
-                "city": "Sun Valley,ID",
-                "radius": 150
+                "city": "Boise,ID",
+                "radius": 100
             },
             "IL" :{
                 "city": "Bloomington,IL",
@@ -79,16 +79,16 @@ class US_States_Info():
                 "radius": 125
             },
             "KS" :{
-                "city": "McPherson,KS",
-                "radius": 150
+                "city": "Wichita,KS",
+                "radius": 120
             },
             "KY" :{
                 "city": "Lexington,KY",
                 "radius": 100
             },
             "LA" :{
-                "city": "Alexandria,LA",
-                "radius": 100
+                "city": "New Orleans,LA",
+                "radius": 90
             }, 
             "ME" :{
                 "city": "Bangor,ME",
@@ -107,8 +107,8 @@ class US_States_Info():
                 "radius": 100
             },
             "MN" :{
-                "city": "St Cloud,MN",
-                "radius": 155
+                "city": "Minneapolis,MN",
+                "radius": 100
             },
             "MS" :{
                 "city": "Forest,MS",
@@ -123,8 +123,8 @@ class US_States_Info():
                 "radius": 210
             },
             "NE" :{
-                "city": "Columbus,NE",
-                "radius": 100
+                "city": "Lincoln,NE",
+                "radius": 90
             },
             "NV" :{
                 "city": "Las Vegas,NV",
@@ -139,8 +139,8 @@ class US_States_Info():
                 "radius": 30
             },
             "NM" :{
-                "city": "Albuquerque,NM",
-                "radius": 160
+                "city": "Minneapolis,MN",
+                "radius": 100
             },
             "NY" :{
                 "city": "Syracuse,NY",
@@ -179,8 +179,8 @@ class US_States_Info():
                 "radius": 100
             },
             "SD" :{
-                "city": "Pierre,SD",
-                "radius": 200
+                "city": "Sioux Falls,SD",
+                "radius": 100
             },
             "TN" :{
                 "city": "Nashville,TN",
@@ -207,12 +207,12 @@ class US_States_Info():
                 "radius": 90
             },
             "WI" :{
-                "city": "Stevens Point,WI",
-                "radius": 155
+                "city": "Madison,WI",
+                "radius": 100
             },
             "WY" :{
                 "city": "Casper,WY",
-                "radius": 155
+                "radius": 200
             },
         }
 
