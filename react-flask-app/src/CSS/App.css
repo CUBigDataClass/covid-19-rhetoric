@@ -52,3 +52,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* USA Map CSS */
+path {
+  pointer-events: all;
+}
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}

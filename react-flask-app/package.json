@@ -13,7 +13,8 @@
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "react-twitter-embed": "^3.0.3"
+    "react-twitter-embed": "^3.0.3",
+    "react-usa-map": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
