@@ -40,7 +40,9 @@ export default class USMapPage extends React.Component {
         return (
             <div className="App">
                 <TopNavBar />
+                <h1>Top Tweets in the US</h1>
                 <USAMap onClick={this.mapHandler} />
+                <h3>Results:</h3>
                 <dl className="dictionary">{this.state.tweetIds.map(this.createTwitterCard)}</dl>
             </div>
         );

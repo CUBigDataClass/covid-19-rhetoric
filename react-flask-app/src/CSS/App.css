@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #282c34;
+  color : white
 }
 
 .App-logo {
@@ -12,6 +13,10 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+body {
+  background-color: #282c34;
 }
 
 .App-header {
@@ -36,9 +41,25 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 4rem auto;
-  
 }
 
+.searchinput {
+  width: 400px;
+  border-radius: 3px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+
+.searchLabel {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
 .App-link {
   color: #61dafb;

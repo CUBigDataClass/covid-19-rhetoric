@@ -3,9 +3,7 @@ import TopNavBar from "./TopNavBar"
 import TweetCard from "./TweetCard"
 import '../CSS/App.css';
 
-
-
-export default class App extends React.Component {
+export default class Home extends React.Component {
 
     constructor(props) {
         super(props)

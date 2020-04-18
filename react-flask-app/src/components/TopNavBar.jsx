@@ -10,11 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function TopNavBar() {
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Funny Internet Portal</Navbar.Brand>
+            <Navbar.Brand href="/Home">COVID-19 Rhetoric</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#usmap">Top in US</Nav.Link>
-                <Nav.Link href="#search">Search</Nav.Link>
+                <Nav.Link href="/Home">Home</Nav.Link>
+                <Nav.Link href="/USmapTweets">Top in US</Nav.Link>
+                <Nav.Link href="/Search">Search</Nav.Link>
             </Nav>
             <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
