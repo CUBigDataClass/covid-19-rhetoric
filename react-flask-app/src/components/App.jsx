@@ -24,7 +24,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         var vm = this;
-        fetch('/GetTopPostsState/CO').then(res => res.json()).then(data => {
+        fetch('/GetTopPostsState/AL').then(res => res.json()).then(data => {
             vm.setState({
                 tweetIds:data
             })
