@@ -19,25 +19,16 @@ def get_current_time():
 # Main Page
 #########################################################
 
-@app.route('/GetTopPost/Month', methods=['GET'])
-def get_Top_Post_Month():
-    backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_post_month_service()
 
-@app.route('/GetTopPost/Week', methods=['GET'])
-def get_Top_Post_Week():
+@app.route('/GetTopCovidPosts', methods=['GET'])
+def get_Top_Covid_Post():
     backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_post_week_service()
+    return backEndServ.get_top_covid_posts()
 
-@app.route('/GetTopPost/Day', methods=['GET'])
-def get_Top_Post_Day():
+@app.route('/GetSentimentHomePage', methods=['GET'])
+def get_sentiment_home_page():
     backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_post_day_service()
-
-@app.route('/GetTopPost/Hour', methods=['GET'])
-def get_Top_Post_hour():
-    backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_post_hour_service()
+    return backEndServ.get_sentiment_home_page_service()
 
 #########################################################
 # US Map Page

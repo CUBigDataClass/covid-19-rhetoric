@@ -7,3 +7,6 @@ Components/sentiment_analyzer/__pycache__/sentiment_TextBlob.cpython-36.pyc
 Components/Twitter/Twitter-api/__pycache__/pythonTwitterAPI.cpython-38.pyc
 Components/sentiment_analyzer/__pycache__/sentiment_TextBlob.cpython-38.pyc
 Components/sentiment_analyzer/__pycache__/test_sentiment_TextBlob.cpython-38-pytest-5.4.1.pyc
+Components/kafka/twitterKeys.json
+.idea/workspace.xml
+Components/kafka/__pycache__/twitter_producer.cpython-36.pyc

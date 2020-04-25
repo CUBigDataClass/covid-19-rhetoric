@@ -2,6 +2,8 @@ from pymongo import MongoClient
 from flask import jsonify 
 import json
 import sys
+import redis
+
 
 # Custom class with US state information
 sys.path.append('../../Components/Twitter/Scraper/')
@@ -9,6 +11,9 @@ import us_states_info as stateInfo
 # Twitter API wrapper (using tweepy)
 sys.path.append('../../Components/Twitter/Twitter-api/')
 import pythonTwitterAPI as twitterapi
+
+sys.path.append('../../Components/kafka/')
+import twitter_producer
 
 class Back_End_Sevices():
 
@@ -20,25 +25,39 @@ class Back_End_Sevices():
         self.funnyAccountTweets_db = self.mongoDBClient['FunnyAccountTweets']
         self.state_Tweets_db = self.mongoDBClient['State_Tweets']
 
-    def get_top_post_hour_service(self):
+    #########################################################
+    # Main Page
+    #########################################################
+
+    #/GetTopCovidPosts
+    def get_top_covid_posts(self):
+        #Start Twitter Streamer 
+        twitter_producer.start_producer()
+        
         return jsonify({
-            "function:" : "get_top_post_hour",
+            "function:" : "get_top_covid_posts",
         }), 200 #OK
 
-    def get_top_post_day_service(self):
-        return jsonify({
-            "function:" : "get_top_post_day",
-        }), 200 #OK
+    #/GetSentimentHomePage
+    def get_sentiment_home_page_service(self):
+        # tweet_dict = {}
+        tweet_list = list()
+        redisObject = redis.Redis(host = "127.0.0.1", db = 1)
+        for key in redisObject.scan_iter("*"):
+            sentiment = redisObject.get(key)
+            # print(key,sentiment)
+            # tweet_dict[str(key)] = sentiment
+            tweet_dict = {
+                'key' : key.decode("utf-8"),
+                'sentiment' : sentiment.decode("utf-8")
+            }
+            tweet_list.append(tweet_dict)
 
-    def get_top_post_week_service(self):
-        return jsonify({
-            "function:" : "get_top_post_week",
-        }), 200 #OK
+        return jsonify(tweet_list), 200 #OK
 
-    def get_top_post_month_service(self):
-        return jsonify({
-            "function:" : "get_top_post_month",
-        }), 200 #OK
+    #########################################################
+    # US Map
+    #########################################################
 
     #/GetTopPostsState
     def get_top_posts_state_service(self,state):
