@@ -45,7 +45,7 @@ class Back_End_Sevices():
     def get_sentiment_home_page_service(self):
         # tweet_dict = {}
         tweet_list = list()
-        redisObject = redis.Redis(host = "127.0.0.1", db = 1)
+        redisObject = redis.Redis(host = "34.71.51.51", db = 1)
         for key in redisObject.scan_iter("*"):
             sentiment = redisObject.get(key)
             # print(key,sentiment)

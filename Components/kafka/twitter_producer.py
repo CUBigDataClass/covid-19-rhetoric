@@ -130,7 +130,7 @@ class Kafka_producer():
     track_list = ['covid19','covid','pandemic','virus','cough']
 
     #Kafka setup
-    client = SimpleClient("localhost:9092")
+    client = SimpleClient("34.71.51.51:9092")
     
     producer = SimpleProducer(client)
     

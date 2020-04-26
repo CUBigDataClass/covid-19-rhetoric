@@ -26,8 +26,13 @@ import sentiment_TextBlob as sT
 
 def start_consumer():
     covid_tweets = list()
-    consumer = KafkaConsumer("covid")
-    redisObject = redis.Redis(host = "127.0.0.1", db = 1)
+
+    #Connect to Kafka (VM) as a Consumer
+    consumer = KafkaConsumer('covid',
+                            bootstrap_servers=['34.71.51.51:9092'])
+
+    #Connect to Redis (VM)
+    redisObject = redis.Redis(host = "34.71.51.51", db = 1)
     for msg in consumer:
         # Check partition(s)
         #print(msg.partition)
