@@ -2,22 +2,25 @@ import twitterScraper as ts
 import us_states_info as stateInfo
 from pymongo import MongoClient
 import datetime as dt
+import sys
 import os
 import time
+
+sys.path.append('../../../Components/sentiment_analyzer/')
+import sentiment_TextBlob as sT
 
 '''
 This script expects that mongoDB is installed and running...
 '''
 
-track_list = ["funny", "meme", "hilarious", "haha", "LOL"]
+track_list = ["covid", "covid-19", "cdc", "pandemic"]
 
 def create_tweet_entry(tweet):
+    blob = sT.Text_Sentiment()
+    polarity = blob.get_sentiment_polarity(tweet.text)
     tweetEntry = {
-                "tweetID": tweet.tweet_id,
-                "date": tweet.timestamp,
-                "text": tweet.text,
-                "likes": tweet.likes,
-                "rt": tweet.retweets
+                    "key": tweet.tweet_id,
+                    "sentiment": polarity
                 }
     return tweetEntry
 
@@ -40,7 +43,7 @@ def main():
         mongoCollection = mongoDB[key]
 
         #For more tweets, change limit and poolsize
-        tweets = ts.scrape_twitter(track_list=track_list, limit=10, poolsize=5, begindate=dt.date(2015, 6, 12), enddate=dt.date.today(),
+        tweets = ts.scrape_twitter(track_list=track_list, limit=10, poolsize=1, begindate=dt.date(2020, 1, 1), enddate=dt.date.today(),
                                    loc_near=stateDict.get(key).get('city'), radius=stateDict.get(key).get('radius'))
 
         ts.sort_tweets_by_popularity(tweets)

@@ -5,15 +5,17 @@ import Card from 'react-bootstrap/Card'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TweetCard(props) {
+    console.log(props.tweetId)
+    console.log(props.bg)
     return (
         <Card
-            bg={'Primary'.toLowerCase()}
-            text={'Primary'.toLowerCase() === 'light' ? 'dark' : 'white'}
+            bg={props.bg.toLowerCase()}
+            text={props.bg.toLowerCase() === 'light' ? 'dark' : 'white'}
             style={{ width: '18rem' }}
         >
             <Card.Header>Tweet</Card.Header>
             <Card.Body>
-                <TwitterTweetEmbed tweetId={props.tweetId} />
+                <TwitterTweetEmbed tweetId={props.tweetId.toLowerCase()} />
             </Card.Body>
         </Card>
     );

@@ -15,6 +15,9 @@ import pythonTwitterAPI as twitterapi
 sys.path.append('../../Components/kafka/')
 import twitter_producer
 
+sys.path.append('../../Components/sentiment_analyzer/')
+import sentiment_TextBlob as sT
+
 class Back_End_Sevices():
 
     def __init__(self,port=27017,host="127.0.0.1"):
@@ -66,17 +69,26 @@ class Back_End_Sevices():
             collection = self.state_Tweets_db
             documents = collection[state]
 
-            tweetIDs = []
+            tweets = []
             for document in documents.find({}):
-                tweetIDs.append(document["tweetID"])
+                tweetDict = {
+                    "key" : document["key"],
+                    "sentiment" : document["sentiment"]
+                }
+
+                tweets.append(tweetDict)
             #tweetIDs = [tweetIDs for document["tweetIDs"] in documents.find({})]
 
-            return jsonify(tweetIDs), 200
+            return jsonify(tweets), 200
         else:
             return "NOT A VALID STATE\n", 404 #NOT FOUND
 
         def get_top_post_month_service():
             pass
+
+    #########################################################
+    # Search
+    #########################################################
 
     #/Search/<string:user_input>
     def user_search_query_service(self, user_input):
@@ -97,3 +109,31 @@ class Back_End_Sevices():
         for tweet in tweets:
             tweetIds.append(str(tweet.id))
         return tweetIds
+
+    #/Search/<string:user_input>
+    # def user_search_query_service(self, user_input):
+
+    #     new_input = user_input + " covid-19 " + " CDC "
+    #     if len(new_input) > 500:
+    #         return "BAD REQUEST\n", 400 
+    #     else:
+    #         twitterClient = twitterapi.TwitterClient()
+    #         tweets = twitterClient.search_for_tweet(new_input,100)
+            
+    #         tweetDicts = self.makeListOfTweets(tweets)
+    #         if(len(tweetDicts) == 0):
+    #             return "NOT FOUND\n", 404
+    #         else:
+    #            return jsonify(tweetDicts), 200
+
+    # def makeListOfTweets(self, tweets):
+    #     blob = sT.Text_Sentiment()
+    #     tweetsDict = []
+    #     for tweet in tweets:
+    #         polarity = blob.get_sentiment_polarity(tweet.text)
+    #         tweetEntry = {
+    #             "key": tweet.id,
+    #             "sentiment": polarity
+    #         }
+    #         tweetsDict.append(tweetEntry)
+    #     return tweetsDict

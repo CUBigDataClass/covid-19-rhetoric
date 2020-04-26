@@ -1,6 +1,6 @@
 import React from "react";
 import TopNavBar from "./TopNavBar"
-import TweetCard from "./TweetCard"
+import SimpleTweetCard from "./SimpleTweetCard"
 import '../CSS/App.css';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -22,7 +22,7 @@ export default class SearchForm extends React.Component {
     createTwitterCard(tweetId){
         console.log(tweetId)
         return(
-            <TweetCard
+            <SimpleTweetCard
                 key={tweetId}
                 tweetId={tweetId}
              />

@@ -10,7 +10,7 @@ export default class USMapPage extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { tweetIds: [] }
+        this.state = { tweets: [] }
     }
 
 
@@ -20,20 +20,22 @@ export default class USMapPage extends React.Component {
         var vm = this
         fetch('/GetTopPostsState/' + state_name).then(res => res.json()).then(data => {
             vm.setState({
-                tweetIds: data
+                tweets: data
             })
         })
     };
 
 
-    createTwitterCard(tweetId) {
-        console.log(tweetId)
-        return (
-            <TweetCard
-                key={tweetId}
-                tweetId={tweetId}
-            />
-        );
+    createTwitterCard(tweet) {
+        var tweetId = tweet.key;
+        var polarity = tweet.sentiment;
+    
+        var bg = "";
+        if (polarity >= -0.5 && polarity <= 0.5) bg = "Light";
+        else if (polarity > 0.5) bg = "Success";
+        else bg = "Danger";
+    
+        return <TweetCard key={tweetId} tweetId={tweetId} bg={bg} />;
     }
 
     render() {
@@ -43,7 +45,7 @@ export default class USMapPage extends React.Component {
                 <h1>Top Tweets in the US</h1>
                 <USAMap onClick={this.mapHandler} />
                 <h3>Results:</h3>
-                <dl className="dictionary">{this.state.tweetIds.map(this.createTwitterCard)}</dl>
+                <dl className="dictionary">{this.state.tweets.map(this.createTwitterCard)}</dl>
             </div>
         );
     }
