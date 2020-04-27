@@ -20,9 +20,9 @@ import sentiment_TextBlob as sT
 
 class Back_End_Sevices():
 
-    def __init__(self,port=27017,host="127.0.0.1"):
+    def __init__(self,host="mongodb+srv://app:bigdata@cluster0-vejky.gcp.mongodb.net/test?retryWrites=true&w=majority"):
         self.port = int(port)
-        self.mongoDBClient = MongoClient(host, port)
+        self.mongoDBClient = MongoClient(host)
 
         #MongoDB databases
         self.funnyAccountTweets_db = self.mongoDBClient['FunnyAccountTweets']

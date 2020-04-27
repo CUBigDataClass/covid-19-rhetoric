@@ -27,8 +27,8 @@ def create_tweet_entry(tweet):
 def main():
     start_time = time.time()
 
-    #Making a connection with MogoClient
-    mongoDBclient = MongoClient('localhost', 27017)
+    #Making a connection with MogoClient ()
+    mongoDBclient = MongoClient("mongodb+srv://app:bigdata@cluster0-vejky.gcp.mongodb.net/test?retryWrites=true&w=majority")
 
     #Getting the DB (creates the DB if DNE)
     mongoDB = mongoDBclient['State_Tweets']
@@ -43,7 +43,7 @@ def main():
         mongoCollection = mongoDB[key]
 
         #For more tweets, change limit and poolsize
-        tweets = ts.scrape_twitter(track_list=track_list, limit=10, poolsize=1, begindate=dt.date(2020, 1, 1), enddate=dt.date.today(),
+        tweets = ts.scrape_twitter(track_list=track_list, limit=100, poolsize=10, begindate=dt.date(2020, 1, 1), enddate=dt.date.today(),
                                    loc_near=stateDict.get(key).get('city'), radius=stateDict.get(key).get('radius'))
 
         ts.sort_tweets_by_popularity(tweets)
