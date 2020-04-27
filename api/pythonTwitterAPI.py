@@ -5,9 +5,6 @@ from tweepy import Cursor
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
-
-import pandas as pd
-import numpy as np
 import re
 
 ######################################################################################################################
@@ -134,28 +131,3 @@ class TwitterClient():
       for tweet in Cursor(self.twitter_client.search, q=query_str, count=count).items(count):
         found_tweets.append(tweet)
       return found_tweets
-
-######################################################################################################################
-# Class TweetAnalyzer
-# - Functionality for analyzig and categorizing from tweets
-######################################################################################################################
-class TweetAnalyzer():
-
-  def clean_tweet(self, tweet):
-    return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
-
-  def tweets_to_data_frame(self, tweets):
-    df = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['tweets'])
-    df['id'] = np.array([tweet.id for tweet in tweets])
-    df['date'] = np.array([tweet.created_at for tweet in tweets])
-    df['source'] = np.array([tweet.source for tweet in tweets])
-    df['likes'] = np.array([tweet.favorite_count for tweet in tweets])
-    df['retweets'] = np.array([tweet.retweet_count for tweet in tweets])
-    df['entities'] = np.array([tweet.entities for tweet in tweets])
-    return df
-
-  def get_possible_media_urls(self, tweets):
-    for tweet in tweets:
-      if ("media" in tweet.entities):
-        for image in tweet.entities["media"]:
-            print(image["media_url"])

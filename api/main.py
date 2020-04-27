@@ -2,9 +2,20 @@ from flask import Flask
 from flask import jsonify 
 from flask import request
 import Services as serv
-
+from flask_cors import CORS
 import time
+
+# [START gae_python37_app]
+
+# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
+# called `app` in `main.py`.
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app,resources={
+    r"/*":{
+        "origins":"*"
+    }
+})
 
 #########################################################
 # Testing routes
@@ -54,3 +65,18 @@ def update_US_Tweets():
 def get_Top_Covid_Post():
     backEndServ = serv.Back_End_Sevices()
     return backEndServ.get_top_covid_posts()
+
+
+#########################################################
+# Service Check
+#########################################################
+@app.route('/')
+def hello():
+    return 'API is running'
+
+if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True)
+# [END gae_python37_app]
