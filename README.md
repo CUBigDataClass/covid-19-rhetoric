@@ -1,4 +1,4 @@
-# Funny Internet Portal
+# Twitter COVID-19 Rhetoric
 Repo for CUBigDataClass Project Team 16
 
 ### Group Members:
