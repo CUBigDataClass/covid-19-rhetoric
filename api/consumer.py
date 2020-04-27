@@ -24,16 +24,5 @@ def start_consumer():
         tweet_text = blob.clean_text(tweet_text)
         polarity = round(blob.get_sentiment_polarity(tweet_text),2)
         
-        # print(type(polarity)
-
-        # tweet_data = {
-        #     "id" : tweet_id,
-        #     "polarity" : polarity
-        # }  
-
+        
         redisObject.set(tweet_id, polarity)
-
-          
-        # tp = TopicPartition(msg.topic, msg.partition)
-        # offsets = {tp: OffsetAndMetadata(msg.offset, None)}
-        # consumer.commit(offsets=offsets)

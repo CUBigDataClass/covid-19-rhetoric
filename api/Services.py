@@ -12,6 +12,7 @@ import us_states_info as stateInfo
 # Twitter API wrapper (using tweepy)
 import pythonTwitterAPI as twitterapi
 import twitter_producer
+import consumer
 
 
 class Back_End_Sevices():
@@ -108,11 +109,16 @@ class Back_End_Sevices():
         return "OK", 200 
 
     #/GetTopCovidPosts
-    def get_top_covid_posts(self):
+    def start_producer_service(self):
         #Start Twitter Streamer 
         producer = twitter_producer.Kafka_producer()
         producer.start_producer()
         return "OK", 200 
+    
+    #/StartConsumer
+    def start_consumer_service(self):
+        consumer.start_consumer()
+        return "OK", 200
 
     #/Search/<string:user_input>
     # def user_search_query_service(self, user_input):

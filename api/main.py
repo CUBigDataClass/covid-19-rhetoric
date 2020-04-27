@@ -33,6 +33,8 @@ def get_current_time():
 @app.route('/GetSentimentHomePage', methods=['GET'])
 def get_sentiment_home_page():
     backEndServ = serv.Back_End_Sevices()
+    #Start Consumer
+    #Start Producer
     return backEndServ.get_sentiment_home_page_service()
 
 #########################################################
@@ -61,10 +63,15 @@ def update_US_Tweets():
     backEndServ = serv.Back_End_Sevices()
     return backEndServ.update_US_Tweets_service()
 
-@app.route('/GetTopCovidPosts', methods=['GET'])
-def get_Top_Covid_Post():
+@app.route('/StartProducer', methods=['GET'])
+def start_producer():
     backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_covid_posts()
+    return backEndServ.start_producer_service()
+
+@app.route('/StartConsumer', methods=['GET'])
+def start_consumer():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.start_consumer_service()
 
 
 #########################################################
