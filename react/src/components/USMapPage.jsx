@@ -18,7 +18,7 @@ export default class USMapPage extends React.Component {
         //alert(event.target.dataset.name);
         var state_name = event.target.dataset.name
         var vm = this
-        fetch('/GetTopPostsState/' + state_name).then(res => res.json()).then(data => {
+        fetch('https://backend-dot-bigdata-covid.uc.r.appspot.com/GetTopPostsState/' + state_name).then(res => res.json()).then(data => {
             vm.setState({
                 tweets: data
             })
