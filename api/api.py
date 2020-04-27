@@ -19,12 +19,6 @@ def get_current_time():
 # Main Page
 #########################################################
 
-
-@app.route('/GetTopCovidPosts', methods=['GET'])
-def get_Top_Covid_Post():
-    backEndServ = serv.Back_End_Sevices()
-    return backEndServ.get_top_covid_posts()
-
 @app.route('/GetSentimentHomePage', methods=['GET'])
 def get_sentiment_home_page():
     backEndServ = serv.Back_End_Sevices()
@@ -47,3 +41,16 @@ def get_Top_Posts_State(state):
 def user_search_query_service(user_input):
     backEndServ = serv.Back_End_Sevices()
     return backEndServ.user_search_query_service(user_input)
+
+#########################################################
+# Cron Jobs
+#########################################################
+@app.route('/tasks/updateUSTweets', methods=['GET'])
+def update_US_Tweets():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.update_US_Tweets_service()
+
+@app.route('/GetTopCovidPosts', methods=['GET'])
+def get_Top_Covid_Post():
+    backEndServ = serv.Back_End_Sevices()
+    return backEndServ.get_top_covid_posts()

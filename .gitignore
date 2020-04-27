@@ -11,3 +11,7 @@ Components/kafka/twitterKeys.json
 .idea/workspace.xml
 Components/kafka/__pycache__/twitter_producer.cpython-36.pyc
 Components/kafka/__pycache__/twitter_producer.cpython-38.pyc
+react-flask-app/api/twitterKeys.json
+api/twitterKeys.json
+api/__pycache__
+api/venv

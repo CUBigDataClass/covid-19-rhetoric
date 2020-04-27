@@ -3,20 +3,16 @@ from flask import jsonify
 import json
 import sys
 import redis
+import get_state_tweets
+
+import threading
 
 
-# Custom class with US state information
-sys.path.append('../../Components/Twitter/Scraper/')
 import us_states_info as stateInfo
 # Twitter API wrapper (using tweepy)
-sys.path.append('../../Components/Twitter/Twitter-api/')
 import pythonTwitterAPI as twitterapi
-
-sys.path.append('../../Components/kafka/')
 import twitter_producer
 
-sys.path.append('../../Components/sentiment_analyzer/')
-import sentiment_TextBlob as sT
 
 class Back_End_Sevices():
 
@@ -31,15 +27,6 @@ class Back_End_Sevices():
     #########################################################
     # Main Page
     #########################################################
-
-    #/GetTopCovidPosts
-    def get_top_covid_posts(self):
-        #Start Twitter Streamer 
-        twitter_producer.start_producer()
-        
-        return jsonify({
-            "function:" : "get_top_covid_posts",
-        }), 200 #OK
 
     #/GetSentimentHomePage
     def get_sentiment_home_page_service(self):
@@ -109,6 +96,23 @@ class Back_End_Sevices():
         for tweet in tweets:
             tweetIds.append(str(tweet.id))
         return tweetIds
+
+    #########################################################
+    # Cron Jobs
+    #########################################################
+
+    #/tasks/updateUSTweets
+    def update_US_Tweets_service(self):
+        t1 = threading.Thread(target=get_state_tweets.run_scape) 
+        t1.start()
+        return "OK", 200 
+
+    #/GetTopCovidPosts
+    def get_top_covid_posts(self):
+        #Start Twitter Streamer 
+        producer = twitter_producer.Kafka_producer()
+        producer.start_producer()
+        return "OK", 200 
 
     #/Search/<string:user_input>
     # def user_search_query_service(self, user_input):
