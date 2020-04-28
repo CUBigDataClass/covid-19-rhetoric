@@ -1,7 +1,11 @@
 # Twitter COVID-19 Rhetoric
 Repo for CUBigDataClass Project Team 16
 
-[![buddy pipeline](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253015/badge.svg?token=399bb33c37f1bf2b10aaf4f9f717501975b5d0ab1dcdf9d60dcd1fb88a007c96 "buddy pipeline")](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253015)
+Service|Build Status
+---|---
+Backend|[![buddy pipeline](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253015/badge.svg?token=399bb33c37f1bf2b10aaf4f9f717501975b5d0ab1dcdf9d60dcd1fb88a007c96 "buddy pipeline")](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253015)
+Frontend|[![buddy pipeline](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253177/badge.svg?token=399bb33c37f1bf2b10aaf4f9f717501975b5d0ab1dcdf9d60dcd1fb88a007c96 "buddy pipeline")](https://app.buddy.works/luomajake/covid-19-rhetoric/pipelines/pipeline/253177)
+
 
 ### Group Members:
 - [Jay Patel](https://github.com/jaykpatel1996)
