@@ -32,7 +32,7 @@ export default class SearchForm extends React.Component {
     handleSubmit(event) {
         var query = this.state.value
         event.preventDefault();
-        fetch('/Search/' + query).then(res => res.json()).then(data => {
+        fetch('https://backend-dot-bigdata-covid.uc.r.appspot.com/Search/' + query).then(res => res.json()).then(data => {
             this.setState({
                 tweetIds: data
             })

@@ -31,7 +31,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     var vm = this;
-    fetch("/GetSentimentHomePage")
+    fetch("https://backend-dot-bigdata-covid.uc.r.appspot.com/GetSentimentHomePage")
       .then((res) => res.json())
       .then((data) => {
          vm.setState({

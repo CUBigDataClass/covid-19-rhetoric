@@ -5,7 +5,7 @@ cron:
   target: backend
 - description: "Start the consumer service"
   url: /StartConsumer
-  schedule: every 3 hours 
+  schedule: every 2 hours
   target: backend
 - description: "Start the producer service"
   url: /StartProducer 
