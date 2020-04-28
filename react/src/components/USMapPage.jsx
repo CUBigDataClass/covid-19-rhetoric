@@ -42,7 +42,8 @@ export default class USMapPage extends React.Component {
         return (
             <div className="App">
                 <TopNavBar />
-                <h1>Top Tweets in the US</h1>
+                <h1>COVID-19 Tweets in US</h1>
+                <h3>Choose a state:</h3>
                 <USAMap onClick={this.mapHandler} />
                 <h3>Results:</h3>
                 <dl className="dictionary">{this.state.tweets.map(this.createTwitterCard)}</dl>

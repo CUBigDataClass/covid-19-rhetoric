@@ -44,6 +44,7 @@ export default class Home extends React.Component {
     return (
       <div className="App">
         <TopNavBar />
+        <h1>Latest COVID-19 Tweets</h1>
         { <dl className="dictionary">
           {this.state.tweets.map(this.createTwitterCard)}
         </dl> }

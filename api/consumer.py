@@ -6,6 +6,8 @@ import sentiment_TextBlob as sT
 
 def start_consumer():
     covid_tweets = list()
+    max_tweets = 80
+    tweet_counter = 0
 
     #Connect to Kafka (VM) as a Consumer
     consumer = KafkaConsumer('covid',
@@ -14,9 +16,6 @@ def start_consumer():
     #Connect to Redis (VM)
     redisObject = redis.Redis(host = "34.71.51.51", db = 1)
     for msg in consumer:
-        # Check partition(s)
-        #print(msg.partition)
-
         blob = sT.Text_Sentiment()
         tweet_dict = json.loads(msg.value)
         tweet_id = tweet_dict['id']
@@ -24,5 +23,8 @@ def start_consumer():
         tweet_text = blob.clean_text(tweet_text)
         polarity = round(blob.get_sentiment_polarity(tweet_text),2)
         
-        
         redisObject.set(tweet_id, polarity)
+        tweet_counter += 1
+
+        if(tweet_counter >= max_tweets):
+            return

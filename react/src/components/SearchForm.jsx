@@ -45,7 +45,7 @@ export default class SearchForm extends React.Component {
                 <TopNavBar />
                 <Form className="searchinput" onSubmit={this.handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label className="searchLabel">Enter term to seach Twitter and Reddit</Form.Label>
+                        <Form.Label className="searchLabel">Enter term to seach Twitter for COVID-19 related Tweets</Form.Label>
                         <Form.Control type="input" placeholder="Enter search term" value={this.state.value} onChange={this.handleChange} />
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -54,6 +54,7 @@ export default class SearchForm extends React.Component {
                     <Button variant="primary" type="submit" value="Submit">
                         Submit
             </Button>
+                <h3>Results:</h3>
                 </Form >
                 <dl className="dictionary">{this.state.tweetIds.map(this.createTwitterCard)}</dl>
             </div>

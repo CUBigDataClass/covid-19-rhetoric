@@ -42,7 +42,7 @@ def run_scape():
         mongoCollection = mongoDB[key]
 
         #For more tweets, change limit and poolsize
-        tweets = ts.scrape_twitter(track_list=track_list, limit=100, poolsize=10, begindate=dt.date(2020, 1, 1), enddate=dt.date.today(),
+        tweets = ts.scrape_twitter(track_list=track_list, limit=80, poolsize=5, begindate=dt.date(2020, 1, 1), enddate=dt.date.today(),
                                    loc_near=stateDict.get(key).get('city'), radius=stateDict.get(key).get('radius'))
 
         ts.sort_tweets_by_popularity(tweets)

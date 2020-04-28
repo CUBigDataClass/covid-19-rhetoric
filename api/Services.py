@@ -80,11 +80,14 @@ class Back_End_Sevices():
 
     #/Search/<string:user_input>
     def user_search_query_service(self, user_input):
-        if len(user_input) > 500:
+        
+        search_query = 'covid' + " " + user_input
+
+        if len(search_query) > 500:
             return "BAD REQUEST\n", 400 
         else:
             twitterClient = twitterapi.TwitterClient()
-            tweets = twitterClient.search_for_tweet(user_input,100)
+            tweets = twitterClient.search_for_tweet(search_query,100)
 
             tweetIds = self.makeListOfTweetIds(tweets)
             if(len(tweetIds) == 0):

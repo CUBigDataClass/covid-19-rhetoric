@@ -1,15 +1,14 @@
 cron:
-- description: "Daily US State Tweet update"
+- description: "Daily US State Tweet scrape"
   url: /tasks/updateUSTweets
   schedule: every 24 hours
   target: backend
-- description: "monday morning mailout"
-  url: /StartConsumer
-  schedule: every 40 minutes
-  target: backend
 - description: "Start the consumer service"
-  url: /StartProducer
-  schedule: every 30 minutes
-  description: "Start the producer service"
+  url: /StartConsumer
+  schedule: every 3 hours 
+  target: backend
+- description: "Start the producer service"
+  url: /StartProducer 
+  schedule: every 2 hours 
   target: backend
   
