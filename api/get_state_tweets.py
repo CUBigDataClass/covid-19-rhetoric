@@ -29,9 +29,12 @@ def run_scape():
     #Making a connection with MogoClient ()
     mongoDBclient = MongoClient("mongodb+srv://app:bigdata@cluster0-vejky.gcp.mongodb.net/test?retryWrites=true&w=majority")
 
+    #Drop the entire State_Tweets database
+    mongoDBclient.drop_database('State_Tweets')
+
     #Getting the DB (creates the DB if DNE)
     mongoDB = mongoDBclient['State_Tweets']
-
+    
     #Gets state query info (cities and radii per state)
     stateDict = stateInfo.US_States_Info().get_US_cities_with_radius()
 
